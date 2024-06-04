@@ -15,4 +15,6 @@ sp:spx # a couple of examples are given in the code
 
 # THe script returns the recommendation score.
 
+# enter "q", press enter to quit
+q
 ```
