@@ -1,0 +1,52 @@
+#! /usr/bin/bash
+
+
+
+
+echo ''
+echo ''
+echo "Tradingview Recommendation Fetcher"
+echo "----------------------------------"
+
+
+echo 'This program fetches the overall recommandation for buying or selling'
+echo 'bases on the tradingview analysis of a list of indicators.'
+echo 'The range goes from -1 (sell) to 1 (buy).'
+echo '' 
+echo "Here are some examples:"
+echo ''
+echo -e "SYMBOL\t\t\tDESCRIPTION"
+echo    "-----------------------------------------------------"
+echo -e "SP:SPX\t\t\tS&P500"
+echo -e "COINBASE:BTCUSD\t\tCoinbase bitcoin in USD"
+echo -e "BINANCE:LTCUSD\t\tLitecoin in USD on Binance"
+echo -e "AMEX:VOO\t\tVanguard S&P 500"
+
+
+echo    "-----------------------------------------------------"
+echo ''
+echo "press q to quit"
+echo ''
+echo ''
+
+
+while true
+do	
+    read -p "Check for symbol: " SYMBOL
+
+    if [[ "$SYMBOL" == "q" ]];then
+	    break
+
+    fi
+
+    echo ""
+
+
+    echo "checking for symbol $SYMBOL"
+    # use ${var^^} for transforming to uppercase. The API is case sensitive
+    URL="https://scanner.tradingview.com/symbol?symbol=${SYMBOL^^}&fields=Recommend.All"
+
+    curl $URL
+    echo ""
+
+done
